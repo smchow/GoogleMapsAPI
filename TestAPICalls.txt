@@ -1,0 +1,97 @@
+TripStop 
+
+Step 1) Get Lat/Lon using Google API
+
+Use the  Google Maps Geocoding API to get the lat-lon for the start and end points of the trip
+
+API Key: AIzaSyAn7Mw8AH7zQYoFhVreQdQxfn9KYuwD_JA
+	
+	
+
+
+
+Starting address for simple test case 
+2600 Benjamin Franklin Pkwy, Philadelphia, PA 19130
+https://maps.googleapis.com/maps/api/geocode/json?address=2600+Benjamin+Franklin+Parkway,+Philadelphia,+PA&key=AIzaSyAn7Mw8AH7zQYoFhVreQdQxfn9KYuwD_JA	
+
+Ending address
+1401 N 3rd St, Harrisburg, PA 17102
+https://maps.googleapis.com/maps/api/geocode/json?address=1401+North+3rd+street,+Harrisburg,+PA&key=AIzaSyAn7Mw8AH7zQYoFhVreQdQxfn9KYuwD_JA
+
+
+
+Reference Link:
+https://developers.google.com/maps/documentation/geocoding/get-api-key#key
+https://developers.google.com/maps/documentation/geocoding/intro
+
+Step 2) Get cities in the bounding box using GeoNames API
+
+
+Philadelphia
+"lat": 39.9658015,
+"lng": -75.18116160000001
+
+Harrisburg
+"lat": 40.270908,
+"lng": -76.88955299999999
+
+A bounding box is a rectangle, defined by the westernmost and the easternmost longitudes,
+ and the northernmost and the southernmost latitudes, where the searched territory fits completely in. 
+
+Geonames API - bounding box : Num rows limit is 10 
+http://api.geonames.org/citiesJSON?north=40.270908&south=39.9658015&west=-76.88955299999999&east=-75.18116160000001&lang=de&username=tripstop
+
+One of the places in the response object:
+{
+	"lng": -75.6496302,
+	"geonameId": 5207069,
+	"countrycode": "US",
+	"name": "Pottstown",
+	"fclName": "city, village,...",
+	"toponymName": "Pottstown",
+	"fcodeName": "populated place",
+	"wikipedia": "en.wikipedia.org/wiki/Pottstown%2C_Pennsylvania",
+	"lat": 40.2453741,
+	"fcl": "P",
+	"population": 22377,
+	"fcode": "PPL"
+},
+
+
+Step 3) Find businesses for a given radius and category using Google Places API Web Service
+
+
+- Google API
+https://developers.google.com/places/web-service/search
+
+location — The latitude/longitude around which to retrieve place information. This must be specified as latitude,longitude.
+radius — Defines the distance (in meters) within which to return place results. 
+https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.2453741,-75.6496302&type=restaurant&key=AIzaSyChdzpVUSJi4iCSuBYCHaPUVYzadGWSbCI
+
+Response:
+"results": [
+		{
+			"geometry": {
+				"location": {
+				"lat": 40.24537409999999,
+				"lng": -75.6496302
+			}
+		},
+				"icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",
+				"id": "af5bc4d888c8405744296dbb78ccc3ddbd984797",
+				"name": "Carmelo's Pizzaria",
+				"place_id": "ChIJ4UqVLUGGxokRlRxusu9VCMo",
+				"reference": "CmRSAAAAUdyHDS3KMrwYaXPMPoB6ENpx__jK-Xzn4xo3Z3IPzoDMfjBaBp0vTNPizcPqeLaVgAo31OvqumITRxemObu5dpMY78yhWgKeB9snYm0JjDCMiLzAjdBDXQY-cuw31ehcEhCJukfYDKoCRtqLRW-lxgByGhRjI6VM47OEOxEBbh6IAVpJXCV7kA",
+				"scope": "GOOGLE",
+				"types": [
+				"restaurant",
+				"food",
+				"point_of_interest",
+				"establishment"
+		],
+		"vicinity": "Pottstown"
+		}
+],
+
+
+

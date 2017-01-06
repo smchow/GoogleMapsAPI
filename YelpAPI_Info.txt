@@ -1,0 +1,40 @@
+**********************************************************
+YELP Api - couldn't get it to work
+**********************************************************
+
+https://www.yelp.com/developers/documentation/v3/get_started
+
+
+
+URL:
+https://api.yelp.com/v3/businesses/search?longitude=-75.6496302&latitude=40.2453741&categories=hotel
+
+
+Created an account in Yelp
+Request for access token for Yelp API based app
+Use Postman :
+POST method
+https://api.yelp.com/oauth2/token?grant_type=client_credentials&client_id=E_9Ufi6NZlffIAnyaR4ZOQ&client_secret=PTAM5LgC9aFX7MZFv092HaOC7eMmTEtusXOTvWRrjiBc8zIQDyXIxqtrvXpl0mgt
+ App ID : E_9Ufi6NZlffIAnyaR4ZOQ
+ App Secret : PTAM5LgC9aFX7MZFv092HaOC7eMmTEtusXOTvWRrjiBc8zIQDyXIxqtrvXpl0mgt
+
+Response:
+{
+  "token_type": "Bearer",
+  "access_token": "hKk9CrdDi49s9_FSq9jO3ji1E6tNEZvr67bF-1PCb46HcDjIhy6iTFemJ45UbEnSuhQ-moIAATWG3yPasHnHYp6Hmg_n2O0E6PxEyQJEO_9MqAJt3sRida8P45BqWHYx",
+  "expires_in": 15551998
+}
+
+
+Found the following info online:
+
+Each request must contain the following OAuth protocol parameters:
+=================================================================
+
+OAuth Parameter 	    Value
+oauth_consumer_key 	    Your OAuth consumer key (from Manage API Access).
+oauth_token 	        The access token obtained (from Manage API Access).
+oauth_signature_method 	hmac-sha1
+oauth_signature 	    The generated request signature, signed with the oauth_token_secret obtained (from Manage API Access).
+oauth_timestamp 	    Timestamp for the request in seconds since the Unix epoch.
+oauth_nonce 	        A unique string randomly generated per request.
